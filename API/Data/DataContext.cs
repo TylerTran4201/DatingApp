@@ -19,6 +19,8 @@ namespace API.Data
 
             builder.Entity<UserLike>()
                 .HasKey(k => new {k.SourceUserId, k.TargetUserId});
+
+                
             builder.Entity<UserLike>()
                 .HasOne(s=> s.SourceUser)
                 .WithMany(l => l.LikedUsers)

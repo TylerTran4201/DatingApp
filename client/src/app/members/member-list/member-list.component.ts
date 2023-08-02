@@ -51,6 +51,5 @@ export class MemberListComponent {
       this.memberService.setUserParams(this.userParams);
       this.loadMembers();
     }
-
   }
 }
