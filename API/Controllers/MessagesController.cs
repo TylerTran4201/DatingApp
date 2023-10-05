@@ -12,14 +12,14 @@ namespace API.Controllers
 {
     public class MessagesController : BaseApiController
     {
-        public IUserRepository _userRespository;
+        public IUserRepository _userRepository;
         private readonly IMessageRespository _messageRespository;
         public IMapper _mapper;
-        public MessagesController(IUserRepository userRespository, IMessageRespository messageRespository, IMapper mapper)
+        public MessagesController(IUserRepository userRepository, IMessageRespository messageRespository, IMapper mapper)
         {
             _mapper = mapper;
             _messageRespository = messageRespository;
-            _userRespository = userRespository;
+            _userRepository = userRepository;
         }
 
         [HttpPost]
@@ -30,8 +30,8 @@ namespace API.Controllers
             if (username == createMessageDto.RecipientUsername.ToLower())
                 return BadRequest("You cannot send messages to yourself");
 
-            var sender = await _userRespository.GetUserByUserNameAsync(username);
-            var recipient = await _userRespository.GetUserByUserNameAsync(createMessageDto.RecipientUsername);
+            var sender = await _userRepository.GetUserByUserNameAsync(username);
+            var recipient = await _userRepository.GetUserByUserNameAsync(createMessageDto.RecipientUsername);
 
             if (recipient == null) return NotFound();
 
