@@ -2,12 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Entities
 {
-    public class group
+    public class Group
     {
-        public group(){
+        public Group(){
             
         }
-        public group(string name){
+        public Group(string name){
             Name = name;
         }
 

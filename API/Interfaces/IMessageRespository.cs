@@ -11,10 +11,10 @@ namespace API.Interfaces
         Task<Message> GetMessage(int id);
         Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams);
         Task<IEnumerable<MessageDto>> GetMessageThred(string currentUserName, string recipientUserName);
-        void AddGroup(group group);
+        void AddGroup(Group group);
         void RemoveConnection(Connection connection);
         Task<Connection> GetConnection(string connectionId);
-        Task<group> GetMessageGroup(string groupName);
-        Task<group> GetGroupForConnection(string connectionId);
+        Task<Group> GetMessageGroup(string groupName);
+        Task<Group> GetGroupForConnection(string connectionId);
     }
 }

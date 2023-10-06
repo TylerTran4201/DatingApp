@@ -92,13 +92,13 @@ namespace API.SignalR
             return stringCompare ? $"{caller}-{other}" : $"{other}-{caller}";
         }
 
-        private async Task<group> AddToGroup(string groupName)
+        private async Task<Group> AddToGroup(string groupName)
         {
             var group = await _uow.messageRespository.GetMessageGroup(groupName);
             var connection = new Connection(Context.ConnectionId, Context.User.GetUsername());
             if (group == null)
             {
-                group = new group(groupName);
+                group = new Group(groupName);
                 _uow.messageRespository.AddGroup(group);
             }
 
@@ -109,7 +109,7 @@ namespace API.SignalR
             throw new HubException("Failed to add to group");
         }
 
-        private async Task<group> RemoveFromMessageGroup()
+        private async Task<Group> RemoveFromMessageGroup()
         {
             var group = await _uow.messageRespository.GetGroupForConnection(Context.ConnectionId);
             var connection = group.Connections.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
